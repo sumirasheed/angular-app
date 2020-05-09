@@ -14,16 +14,15 @@ export class WeatherComponent implements OnInit {
     constructor(private getDataService: getDataService) {}
 
     ngOnInit() {
-      this.getDataService.getData(this.currLat,this.currLng).subscribe(response=>{
-          this.data = response;
-          console.log(this.data);
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(position => {
-              this.currLat = position.coords.latitude;
-              this.currLng = position.coords.longitude;
-            });
-          }
-          console.log(this.currLat + this.currLng)
-      });
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+          this.currLat = position.coords.latitude;
+          this.currLng = position.coords.longitude;
+          this.getDataService.getData(this.currLat,this.currLng).subscribe(response=>{
+            this.data = response;
+          });
+
+        });
+      }
     }
 }

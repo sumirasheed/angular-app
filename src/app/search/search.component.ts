@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   constructor() { }
-
+  searchValue:any;
   ngOnInit(): void {
+
+  }
+
+  onClickSubmit(value:any){
+    this.searchValue = value;
+    console.log(value.location);
   }
 
 }

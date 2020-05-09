@@ -38,10 +38,7 @@
   </div>
   <div class="banner">
       <div class="container">
-          <form action="#" class="form-location">
-            <input type="text" class="form-input" placeholder="Find Your Location">
-            <input type="submit" class="form-submit" value="Find">
-          </form>
+          <app-search></app-search>
       </div>
       <div class="forecast-table">
          <div class="container">
@@ -66,7 +63,7 @@
                 </div> -->
                 <div class="forecast" *ngFor="let weath of data.list">
                     <div class="forecast-header">
-                    <div class="day">{{weath.dt_txt | date:'EEEE, MMMM d, h:mm a' }}</div>
+                    <div class="day">{{weath.dt_txt | date:'MMMM d,EEEE,h:mm a' }}</div>
                     </div>
                     <div class="forecast-content">
 

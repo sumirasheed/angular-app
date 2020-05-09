@@ -9,6 +9,6 @@ export class getDataService {
   constructor(private http: HttpClient){}
 
   getData(currLat,currLng){
-      return this.http.get('http://api.openweathermap.org/data/2.5/forecast?lat='+currLat+'&lon='+currLng+'76.3&cnt=10&appid=ae285e4043ac05fcbdf2d77e1f4b2565');
+      return this.http.get('http://api.openweathermap.org/data/2.5/forecast?lat='+currLat+'&lon='+currLng+'&cnt=10&appid=ae285e4043ac05fcbdf2d77e1f4b2565');
   }
 }

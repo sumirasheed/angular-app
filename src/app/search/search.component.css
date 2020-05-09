@@ -1,0 +1,25 @@
+.form-location{
+  position: relative;
+  margin-bottom: 70px;
+}
+.form-input{
+  width: 100%;
+  padding: 20px 50px 20px 20px;
+  background: #1e202b;
+  color: white;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+}
+.form-submit{
+  position: absolute;
+  top: 5px;
+  background: #009ad8;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  right: 5px;
+  bottom: 5px;
+  padding: 0 40px;
+}
