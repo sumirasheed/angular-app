@@ -1,44 +1,128 @@
-.weather-app{
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-  position: absolute;
-  margin: 40px 0;
+.site-header{
+  padding: 50px 0;
+  left:0;
+  right:0;
+  top:0;
+}
+.site-title{
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: white;
+}
+.logo-type{
+  margin-left:20px;
+}
+.site-description{
+  font-size: 0.514286em;
+  display: block;
+  color: #bfc1c8;
+}
 
-}
-.weather-card{
-  width:21rem;
-  border-radius: 6px;
-}
-.weather-card-img{
-  position: relative;
-  object-fit: cover;
-  height: 300px;
-  border-top-left-radius:6px;
-  border-top-right-radius:6px;
-}
-.weather-forecast{
+.navbar-brand{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: nowrap;
 }
-.icon{
-  margin: 0 10px;
-  color:#ccc;
+.navbar-brand img{
+  object-fit: contain
 }
-.weather-status{
-  position: absolute;
-  top: 6%;
-  left: 0;
-  right: 0;
-  text-align: center
+.navbar-nav{
+  margin-left: auto;
+  flex-direction: row;
 }
-h2,h3{
+
+.nav-item.active .nav-link{
+  border-color: #009ad8;
+  color: #009ad8;
+  border-radius: 30px;
+}
+.nav-link{
   color:white;
-  font-weight: bold;
+  padding: 3px 30px;
+  border: 2px solid transparent;
 }
-.title{
-  color: #3f7aaf8f;
+
+.banner{
+  background-image:url('../../assets/images/banner.png');
+  background-size: cover;
+  padding: 70px 0;
+  min-height: 350px;
+}
+form{
+  position: relative;
+  margin-bottom: 70px;
+}
+.form-input{
+  width: 100%;
+  padding: 20px 50px 20px 20px;
+  background: #1e202b;
+  color: white;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+}
+.form-submit{
+  position: absolute;
+  top: 5px;
+  background: #009ad8;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  right: 5px;
+  bottom: 5px;
+  padding: 0 40px;
+}
+
+.forecast{
+  display: table-cell;
+  vertical-align: top;
+  color: white;
+}
+.forecast:nth-child(even){
+  background-color: #262936;
+}
+.forecast.today{
+  width: 420px;
+}
+.forecast-header{
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
   text-align: center;
-  padding: 45px 0;
+  font-weight: 400;
+}
+.today .forecast-header .day{
+  text-align:left;
+}
+
+.forecast-content{
+  padding: 50px 20px 10px;
+  text-align: center;
+}
+.today .forecast-content{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.today .location{
+  font-size: 1.2857142857em;
+  font-weight: 400;
+  text-align: left;
+}
+.today .degree{
+  font-size: 1.7142857143em;
+  color: white;
+  font-weight: 700;
+}
+.today .degree .num{
+  font-size: 3.4285714286rem;
+  overflow-wrap: break-word;
+  margin-right: 30px;
+}
+
+.forecast-container{
+    background: #323544;
+    display: flex;
+    width: 100%;
+    overflow-x:scroll;
+    border-radius: 10px;
+    margin-bottom: 50px;
 }

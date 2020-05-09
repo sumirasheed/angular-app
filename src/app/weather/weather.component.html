@@ -1,44 +1,90 @@
-<div class="container">
-    <h2 class="title">WEATHER FORECAST</h2>
-    <div class="weather-app">
-      <div class="card weather-card">
-          <img class="weather-card-img" src="assets/images/1.png" alt="Card image cap">
-          <div class="weather-status">
-              <h2>
-                27° C
-              </h2>
-              <h3>CLOUDY</h3>
-          </div>
-          <div class="card-body">
-              <div class="weather-forecast">
-                  <div class="weather-days">
-                      <p>Monday</p>
-                  </div>
-                  <div class="weather-degree">
-                    <span>24° C</span>
-                    <span><i class="icon fa fa-cloud" aria-hidden="true"></i></span>
-                  </div>
+
+<div class="weather-app">
+  <div class="site-header">
+    <div class="container">
+        <nav class="navbar">
+            <a class="navbar-brand" href="#">
+              <img src="assets/images/logo.png" alt="logo">
+              <div class="logo-type">
+                  <h1 class="site-title">Weather App</h1>
+                  <small class="site-description">tagline goes here</small>
               </div>
-              <div class="weather-forecast">
-                <div class="weather-days">
-                    <p>Tuesday</p>
-                </div>
-                <div class="weather-degree">
-                  <span>27° C</span>
-                  <span><i class="icon fa fa-cloud" aria-hidden="true"></i></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Weather</a>
+                </li>
+                <li class="nav-item">
+                      <a class="nav-link" href="#">Photos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Contact</a>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+  </div>
+  <div class="banner">
+      <div class="container">
+          <form action="#" class="form-location">
+            <input type="text" class="form-input" placeholder="Find Your Location">
+            <input type="submit" class="form-submit" value="Find">
+          </form>
+      </div>
+      <div class="forecast-table">
+         <div class="container">
+            <div class="forecast-container">
+                <!-- <div class="forecast today">
+                    <div class="forecast-header">
+                    <div class="day">{{data.current.dt}}</div>
+                    </div>
+                    <div class="forecast-content">
+                    <div class="location"></div>
+                        <div class="degree">
+                            <div class="num">
+                                {{data.current.temp - 273 | number}}
+                              <sup>o</sup>
+                              C
+                            </div>
+                          <div class="forecast-icon">
+                              <img src='http://openweathermap.org/img/w/{{data.current.weather[0].icon}}.png' alt="weather-icon">
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="forecast" *ngFor="let weath of data.list">
+                    <div class="forecast-header">
+                    <div class="day">{{weath.dt_txt | date:'EEEE, MMMM d, h:mm a' }}</div>
+                    </div>
+                    <div class="forecast-content">
+
+                        <div class="degree">
+                            <div class="num">
+                                {{weath.main.temp - 273 | number}}
+                                <sup>o</sup>
+                                C
+                            </div>
+                            <div class="forecast-icon">
+                              <img src="http://openweathermap.org/img/w/{{weath.weather[0].icon}}.png" alt="weather-icon">
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="weather-forecast">
-              <div class="weather-days">
-                  <p>Wednesday</p>
-              </div>
-              <div class="weather-degree">
-                <span>30° C</span>
-                <span><i class="icon fa fa-cloud" aria-hidden="true"></i></span>
-              </div>
-          </div>
-          </div>
+         </div>
       </div>
-
-    </div>
+  </div>
 </div>

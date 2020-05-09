@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-
-
+import { getDataService } from './weather.service';
 
 @Component({
   selector: 'app-weather',
@@ -10,27 +8,22 @@ import { HttpClient } from "@angular/common/http";
 })
 export class WeatherComponent implements OnInit {
 
-    title = 'image-gallery';
-    private data:any = [];
-    private parsedData;
-    constructor(private http: HttpClient) {
-
-    }
+    data:any = [];
+    currLng:any;
+    currLat:any;
+    constructor(private getDataService: getDataService) {}
 
     ngOnInit() {
-      const url ='http://dataservice.accuweather.com/locations/v1/adminareas/countryCode?apikey=%0943c9I4Qe8GTCaurfUXuZN8fq4TIZMrFI';
-    // this.http.get(url).subscribe((res)=>{
-    //   this.data = res
-    //   console.log("data" + res)
-    // })
-
-
-      this.data = this.http.get(url);
-
-      // this.parsedData = JSON.parse(this.data);
-      console.log("Data :" , this.data);
-
-
+      this.getDataService.getData(this.currLat,this.currLng).subscribe(response=>{
+          this.data = response;
+          console.log(this.data);
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(position => {
+              this.currLat = position.coords.latitude;
+              this.currLng = position.coords.longitude;
+            });
+          }
+          console.log(this.currLat + this.currLng)
+      });
     }
-
 }
