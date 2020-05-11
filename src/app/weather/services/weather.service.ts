@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { RootObject } from './weather';
+import { RootObject } from '../interface/weather';
 import { Observable } from 'rxjs';
 
 @Injectable({
