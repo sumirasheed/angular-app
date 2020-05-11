@@ -42,7 +42,7 @@
       </div>
       <div class="forecast-table">
          <div class="container">
-            <div class="forecast-container">
+            <div class="forecast-container" *ngIf="isWeatherData">
                 <!-- <div class="forecast today">
                     <div class="forecast-header">
                     <div class="day">{{data.current.dt}}</div>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="forecast" *ngFor="let weath of data.list">
+                <div class="forecast" *ngFor="let weath of Weatherdata">
                     <div class="forecast-header">
                     <div class="day">{{weath.dt_txt | date:'MMMM d,EEEE,h:mm a' }}</div>
                     </div>
