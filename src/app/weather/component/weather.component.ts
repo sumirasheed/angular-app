@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { getDataService } from '../services/weather.service';
 import { RootObject } from '../interface/weather';
 
@@ -7,37 +7,49 @@ import { RootObject } from '../interface/weather';
   templateUrl: '../view/weather.component.html',
   styleUrls: ['../view/css/weather.component.css']
 })
-export class WeatherComponent implements OnInit,OnChanges {
+export class WeatherComponent implements OnInit {
 
     Weatherdata:RootObject;
     currLng:any;
     currLat:any;
     isWeatherData=false;
+
     constructor(public getDataService: getDataService) {}
 
     ngOnInit() {
+      this.Weatherdata = {
+        list: [],
+        city: {name: ''}
+      }
+      //Get data by current location lat and log
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           this.currLat = position.coords.latitude;
           this.currLng = position.coords.longitude;
-
-          this.getDataService.getDataByGeo(this.currLat,this.currLng).subscribe(response=>{
-            response.list.map((item,index)=>{
-                this.Weatherdata.list.map((it,i)=>{
-                  it.dt_txt = item.dt_txt;
-                  it.main.temp = item.main.temp;
-                  it.weather[0].icon = item.weather[0].icon;
-                });
-            });
+          this.getDataService.getDataByGeo(this.currLat, this.currLng).subscribe(response => {
+            this.Weatherdata.city.name = response.city.name;
+            if (response.list){
+              response.list.map((item, index) => {
+                this.Weatherdata.list.push(item);
+              });
+            }
           });
         });
       }
-    }
-
-    ngOnChanges(){
-
       if(this.Weatherdata!==null && this.Weatherdata!==undefined){
         this.isWeatherData = true;
       }
+    }
+
+    //Get data by location
+    onLocationUpdate(location){
+      console.log(location);
+      this.getDataService.getDataByLoc(location).subscribe(response => {
+        if (response.list){
+          response.list.map((item, index) => {
+            this.Weatherdata.list.push(item);
+          });
+        }
+      });
     }
 }

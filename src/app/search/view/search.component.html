@@ -1,4 +1,5 @@
-<form  #myform="ngForm"  action="#" (ngSubmit) = "onClickSubmit(myform.value)" class="form-location">
-  <input type="text" class="form-input" name="location" placeholder="Find Your Location" ngModel>
-  <input type="submit" class="form-submit" value="find">
-</form>
+<div  class="form-location">
+  <input type="text" class="form-input" #location  name="location" placeholder="Find Your Location" ngModel>
+  <button (click)="onClickSubmit(location.value)" class="form-submit">Find</button>
+</div>
+

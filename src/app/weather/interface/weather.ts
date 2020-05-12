@@ -1,6 +1,5 @@
   export interface Main {
       temp: number;
-      [key:string]: number;
   }
 
   export interface Weather {

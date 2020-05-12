@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { getDataService } from '../../weather/services/weather.service';
 
 @Component({
@@ -8,20 +8,24 @@ import { getDataService } from '../../weather/services/weather.service';
 })
 export class SearchComponent implements OnInit {
 
+  @Output() eventPlaceUpadate = new EventEmitter<string>();
+
   constructor(public getDataService: getDataService) { }
-  searchValue:any;
-  data:any = [];
+
+  searchValue: any;
+  data: any = [];
+
   ngOnInit(): void {
 
   }
 
-  onClickSubmit(value:any){
-    this.searchValue = value.location;
-    console.log(value.location);
-    this.getDataService.getDataByLoc(this.searchValue).subscribe(response=>{
-      this.data= response;
-    });
-
+  //Search button click function
+  onClickSubmit(value: any){
+    this.placeUpadate(value);
   }
 
+  //emitting location update function
+  placeUpadate(location: string): void {
+    this.eventPlaceUpadate.emit(location);
+  }
 }
