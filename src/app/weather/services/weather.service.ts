@@ -21,7 +21,7 @@ export class getDataService {
   //By location
   getDataByLoc(location):Observable<RootObject>{
 
-      return this.http.get<RootObject>('http://api.openweathermap.org/data/2.5/forecast?q='+location+'&appid=ae285e4043ac05fcbdf2d77e1f4b2565');
+      return this.http.get<RootObject>('http://api.openweathermap.org/data/2.5/forecast?q='+location+'&cnt=10&appid=ae285e4043ac05fcbdf2d77e1f4b2565');
 
   }
 }

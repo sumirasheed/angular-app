@@ -57,6 +57,10 @@
 .forecast:nth-child(even){
   background-color: #262936;
 }
+.today.forecast{
+  display: block;
+  margin-bottom: 40px;
+}
 .today .forecast-icon{
   text-align: left;
 }

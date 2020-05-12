@@ -43,11 +43,17 @@ export class WeatherComponent implements OnInit {
 
     //Get data by location
     onLocationUpdate(location){
-      console.log(location);
+      this.Weatherdata = {
+        list: [],
+        city: {name: ''}
+      }
+      console.log("sj");
       this.getDataService.getDataByLoc(location).subscribe(response => {
+        this.Weatherdata.city.name = response.city.name;
         if (response.list){
           response.list.map((item, index) => {
             this.Weatherdata.list.push(item);
+            console.log(this.Weatherdata.list);
           });
         }
       });

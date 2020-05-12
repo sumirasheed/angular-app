@@ -38,7 +38,7 @@
   </div>
   <div class="banner">
       <div class="container">
-        <app-search (location)="onLocationUpdate($event)"></app-search>
+        <app-search (eventPlaceUpadate)="onLocationUpdate($event)"></app-search>
       </div>
       <div class="forecast-table">
          <div class="container">
@@ -63,7 +63,6 @@
                 </div>
             </div>
             <div class="forecast-container" *ngIf="isWeatherData">
-
                 <div class="forecast" *ngFor="let weath of Weatherdata.list">
                     <div class="forecast-header">
                     <div class="day">{{weath.dt_txt | date:'MMMM d,EEEE,h:mm a' }}</div>
