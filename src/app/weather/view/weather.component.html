@@ -39,51 +39,58 @@
   <div class="banner">
       <div class="container">
         <app-search (eventPlaceUpadate)="onLocationUpdate($event)"></app-search>
-      </div>
-      <div class="forecast-table">
-         <div class="container">
-            <div class="forecast today">
-                <div class="forecast-header">
-                    <div class="day">{{Weatherdata.list[0].dt_txt| date:'MMMM d,EEEE,h:mm a'}}</div>
-                </div>
-                <div class="">
-                  <div class="location">
-                      <h3>{{Weatherdata.city.name}}</h3>
+        <div class="forecast-table">
+          <div class="container">
+            <div class="weather-app" *ngIf="isData==false">
+              <div class="forecast today" *ngIf="isCurrentData">
+                  <div class="forecast-header" >
+                      <!-- <div class="day">{{Weatherdata.list[0].dt_txt| date:'MMMM d,EEEE,h:mm a'}}</div> -->
                   </div>
-                    <div class="degree">
-                        <div class="num">
-                            {{Weatherdata.list[0].main.temp - 273 | number}}
-                          <sup>o</sup>
-                          C
-                        </div>
-                      <div class="forecast-icon">
-                          <img src='http://openweathermap.org/img/w/{{Weatherdata.list[0].weather[0].icon}}.png' alt="weather-icon">
-                        </div>
+                  <div class="">
+                    <div class="location">
+                        <h3>{{data.name}}</h3>
                     </div>
-                </div>
-            </div>
-            <div class="forecast-container" *ngIf="isWeatherData">
-                <div class="forecast" *ngFor="let weath of Weatherdata.list">
-                    <div class="forecast-header">
-                    <div class="day">{{weath.dt_txt | date:'MMMM d,EEEE,h:mm a' }}</div>
-                    </div>
-                    <div class="forecast-content">
+                      <div class="degree">
+                          <div class="num">
+                              {{data.main.temp - 273 | number}}
+                            <sup>o</sup>
+                            C
+                          </div>
+                        <div class="forecast-icon">
+                            <img src='http://openweathermap.org/img/w/{{data.weather[0].icon}}.png' alt="weather-icon">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="forecast-container" *ngIf="isWeatherData">
+                  <div class="forecast" *ngFor="let weath of Weatherdata.list">
+                      <div class="forecast-header">
+                      <div class="day">{{weath.dt_txt | date:'MMMM d,EEEE,h:mm a' }}</div>
+                      </div>
+                      <div class="forecast-content">
 
-                        <div class="degree">
-                            <div class="num">
-                                {{weath.main.temp - 273 | number}}
-                                <sup>o</sup>
-                                C
-                            </div>
-                            <div class="forecast-icon">
-                              <img src="http://openweathermap.org/img/w/{{weath.weather[0].icon}}.png" alt="weather-icon">
-                            </div>
+                          <div class="degree">
+                              <div class="num">
+                                  {{weath.main.temp - 273 | number}}
+                                  <sup>o</sup>
+                                  C
+                              </div>
+                              <div class="forecast-icon">
+                                <img src="http://openweathermap.org/img/w/{{weath.weather[0].icon}}.png" alt="weather-icon">
+                              </div>
 
-                        </div>
-                    </div>
-                </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
-         </div>
-      </div>
+            <div class="weather-error" *ngIf="isData">
+              <div class="error">
+                  <p>No Location Found</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

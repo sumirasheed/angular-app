@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getDataService } from '../services/weather.service';
 import { RootObject } from '../interface/weather';
 
+
 @Component({
   selector: 'app-weather',
   templateUrl: '../view/weather.component.html',
@@ -10,9 +11,12 @@ import { RootObject } from '../interface/weather';
 export class WeatherComponent implements OnInit {
 
     Weatherdata:RootObject;
+    isData=false;
     currLng:any;
     currLat:any;
+    data:any=[];
     isWeatherData=false;
+    isCurrentData=false;
 
     constructor(public getDataService: getDataService) {}
 
@@ -29,15 +33,27 @@ export class WeatherComponent implements OnInit {
           this.getDataService.getDataByGeo(this.currLat, this.currLng).subscribe(response => {
             this.Weatherdata.city.name = response.city.name;
             if (response.list){
-              response.list.map((item, index) => {
-                this.Weatherdata.list.push(item);
+                  response.list.map((item, index) => {
+                  this.Weatherdata.list.push(item);
               });
             }
+          });
+          this.getDataService.getCurrentDataByGeo(this.currLat, this.currLng).subscribe(response => {
+              this.data = response;
           });
         });
       }
       if(this.Weatherdata!==null && this.Weatherdata!==undefined){
         this.isWeatherData = true;
+        this.isData = false;
+      }
+      if(this.data!==null && this.data!==undefined){
+        console.log(this.data)
+        this.isCurrentData = true;
+        this.isData = false;
+      }
+      else{
+        this.isCurrentData = false;
       }
     }
 
@@ -47,15 +63,23 @@ export class WeatherComponent implements OnInit {
         list: [],
         city: {name: ''}
       }
-      console.log("sj");
-      this.getDataService.getDataByLoc(location).subscribe(response => {
+      this.data=[];
+      this.getDataService.getDataByLoc(location).subscribe(
+        response => {
+        this.isData = false;
         this.Weatherdata.city.name = response.city.name;
         if (response.list){
           response.list.map((item, index) => {
             this.Weatherdata.list.push(item);
-            console.log(this.Weatherdata.list);
           });
         }
+      },
+      (err) => {
+        this.isData = true;
+      });
+
+      this.getDataService.getCurrentDataByLoc(location).subscribe(response => {
+        this.data = response;
       });
     }
-}
+  }
